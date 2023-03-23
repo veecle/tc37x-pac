@@ -1,0 +1,446 @@
+_svd: "TC37X.svd"
+
+SCU:
+  CCUCON0:
+    FSI2DIV:
+      InheritSRI: [1, "fFSI2 = fSRI, no divisor"]
+    FSIDIV:
+      Div1: [1, "fFSI = fSRI, no divisor"]
+      MaybeDiv2: [2, "fFSI = fSRI / 2 if SRIDIV is 1 or 2, else fFSI = fSRI"]
+      MaybeDiv3: [3, "fFSI = fSRI / 3 if SRIDIV is 1 or 2, else fFSI = fSRI"]
+    BBBDIV:
+      Stopped: [0, "fBBB is stopped"]
+      Div1: [1, "fBBB = fsource0/1"]
+      Div2: [2, "fBBB = fsource0/2"]
+      Div3: [3, "fBBB = fsource0/3"]
+      Div4: [4, "fBBB = fsource0/4"]
+      Div5: [5, "fBBB = fsource0/5"]
+      Div6: [6, "fBBB = fsource0/6"]
+      Div8: [8, "fBBB = fsource0/8"]
+      Div10: [10, "fBBB = fsource0/10"]
+      Div12: [12, "fBBB = fsource0/12"]
+      Div15: [15, "fBBB = fsource0/15"]
+    SPBDIV:
+      Div2: [2, "fSPB = fsource0/2"]
+      Div3: [3, "fSPB = fsource0/3"]
+      Div4: [4, "fSPB = fsource0/4"]
+      Div5: [5, "fSPB = fsource0/5"]
+      Div6: [6, "fSPB = fsource0/6"]
+      Div8: [8, "fSPB = fsource0/8"]
+      Div10: [10, "fSPB = fsource0/10"]
+      Div12: [12, "fSPB = fsource0/12"]
+      Div15: [15, "fSPB = fsource0/15"]
+    SRIDIV:
+      Div1: [1, "fSRI = fsource0"]
+      Div2: [2, "fSRI = fsource0/2"]
+      Div3: [3, "fSRI = fsource0/3"]
+      Div4: [4, "fSRI = fsource0/4"]
+      Div5: [5, "fSRI = fsource0/5"]
+      Div6: [6, "fSRI = fsource0/6"]
+      Div8: [8, "fSRI = fsource0/8"]
+      Div10: [10, "fSRI = fsource0/10"]
+      Div12: [12, "fSRI = fsource0/12"]
+      Div15: [15, "fSRI = fsource0/15"]
+    GTMDIV:
+      Stopped: [0, "fGTM is stopped"]
+      Div1: [1, "fGTM = fSOURCEGTM"]
+      Div2: [2, "fGTM = fSOURCEGTM/2"]
+      Div3: [3, "fGTM = fSOURCEGTM/3"]
+      Div4: [4, "fGTM = fSOURCEGTM/4"]
+      Div5: [5, "fGTM = fSOURCEGTM/5"]
+      Div6: [6, "fGTM = fSOURCEGTM/6"]
+      Div8: [8, "fGTM = fSOURCEGTM/8"]
+      Div10: [10, "fGTM = fSOURCEGTM/10"]
+      Div12: [12, "fGTM = fSOURCEGTM/12"]
+      Div15: [15, "fGTM = fSOURCEGTM/15"]
+    STMDIV:
+      Stopped: [0, "fSTM is stopped"]
+      Div1: [1, "fSTM = fsource0"]
+      Div2: [2, "fSTM = fsource0/2"]
+      Div3: [3, "fSTM = fsource0/3"]
+      Div4: [4, "fSTM = fsource0/4"]
+      Div5: [5, "fSTM = fsource0/5"]
+      Div6: [6, "fSTM = fsource0/6"]
+      Div8: [8, "fSTM = fsource0/8"]
+      Div10: [10, "fSTM = fsource0/10"]
+      Div12: [12, "fSTM = fsource0/12"]
+      Div15: [15, "fSTM = fsource0/15"]
+    CLKSEL:
+      Backup: [0, "fBACKi s used as clock source fsource0, fsrc1, and fsource2"]
+      PLL: [1, "PLL0 is used as clock source for fsource0;\nfPLL1 is used as clock source for fsrc1;\nfPLL2 is used as clock source for fsource2"]
+
+
+  CCUCON1:
+    MCANDIV:
+      Stopped: [0, "fMCANI is stopped"]
+      Div1: [1, "fMCANI = fsource1"]
+      Div2: [2, "fMCANI = fsource1/2"]
+      Div3: [3, "fMCANI = fsource1/3"]
+      Div4: [4, "fMCANI = fsource1/4"]
+      Div5: [5, "fMCANI = fsource1/5"]
+      Div6: [6, "fMCANI = fsource1/6"]
+      Div8: [8, "fMCANI = fsource1/8"]
+      Div10: [10, "fMCANI = fsource1/10"]
+      Div12: [12, "fMCANI = fsource1/12"]
+      Div15: [15, "fMCANI = fsource1/15"]
+    _modify:
+      CLKSELMCAN:
+        description: "This bit field defines the clock source that is used for the clock generation of fSOURCEMCAN.\n\nNote: The clock has to be turned off before enabling a different clock source."
+    CLKSELMCAN:
+      Stopped: [0, "fMCAN clock is stopped"]
+      UseMCANI: [1, "fMCANI is used as clock source for fMCAN"]
+      UseOscillator: [2, "fOSC0 is used as clock source for fMCAN"]
+    _modify:
+      PLL1DIVDIS:
+        description: "Depending on CCUCON0.CLKSEL, this bit selects whether fsource1 is half fPLL1"
+    PLL1DIVDIS:
+      DividePLL: [0, "Divide fsource1 clock by 2 if fsource1 is inherited from fPLL1"]
+      DividerDisable: [1, "Do not divide fsource1 when fueled from fPLL1"]
+    I2CDIV:
+      Stopped: [0, "fI2C is stopped"]
+      Div1: [1, "fI2C = fsource2"]
+      Div2: [2, "fI2C = fsource2/2"]
+      Div3: [3, "fI2C = fsource2/3"]
+      Div4: [4, "fI2C = fsource2/4"]
+      Div5: [5, "fI2C = fsource2/5"]
+      Div6: [6, "fI2C = fsource2/6"]
+      Div8: [8, "fI2C = fsource2/8"]
+      Div10: [10, "fI2C = fsource2/10"]
+      Div12: [12, "fI2C = fsource2/12"]
+      Div15: [15, "fI2C = fsource2/15"]
+    MSCDIV:
+      Stopped: [0, "fMSC is stopped"]
+      Div1: [1, "fMSC = fSOURCEMSC"]
+      Div2: [2, "fMSC = fSOURCEMSC/2"]
+      Div3: [3, "fMSC = fSOURCEMSC/3"]
+      Div4: [4, "fMSC = fSOURCEMSC/4"]
+      Div5: [5, "fMSC = fSOURCEMSC/5"]
+      Div6: [6, "fMSC = fSOURCEMSC/6"]
+      Div8: [8, "fMSC = fSOURCEMSC/8"]
+      Div10: [10, "fMSC = fSOURCEMSC/10"]
+      Div12: [12, "fMSC = fSOURCEMSC/12"]
+      Div15: [15, "fMSC = fSOURCEMSC/15"]
+    _modify:
+      CLKSELMSC:
+        description: "This bit field defines the clock source that is used for the clock generation of fSOURCEMSC.\n\nNote: The clock has to be turned off before enabling a different clock source."
+    CLKSELMSC:
+      Stopped: [0, "fSOURCEMSC/fMSC clock is stopped"]
+      UseSource1: [1, "fsource1 is used as clock source for fSOURCEMSC"]
+      UseSource2: [2, "fsource2 is used as clock source for fSOURCEMSC"]
+    QSPIDIV:
+      Stopped: [0, "fQSPI is stopped"]
+      Div1: [1, "fQSPI = fSOURCEQSPI"]
+      Div2: [2, "fQSPI = fSOURCEQSPI/2"]
+      Div3: [3, "fQSPI = fSOURCEQSPI/3"]
+      Div4: [4, "fQSPI = fSOURCEQSPI/4"]
+      Div5: [5, "fQSPI = fSOURCEQSPI/5"]
+      Div6: [6, "fQSPI = fSOURCEQSPI/6"]
+      Div8: [8, "fQSPI = fSOURCEQSPI/8"]
+      Div10: [10, "fQSPI = fSOURCEQSPI/10"]
+      Div12: [12, "fQSPI = fSOURCEQSPI/12"]
+      Div15: [15, "fQSPI = fSOURCEQSPI/15"]
+    _modify:
+      CLKSELQSPI:
+        description: "This bit field defines the clock source that is used for the clock generation of fSOURCEQSPI.\n\nNote: The clock has to be turned off before enabling a different clock source."
+    CLKSELQSPI:
+      Stopped: [0, "fSOURCEQSPI/fQSPI clock is stopped"]
+      UseSource1: [1, "fsource1 is used as clock source for fSOURCEQSPI"]
+      UseSource2: [2, "fsource2 is used as clock source for fSOURCEQSPI"]
+
+
+  CCUCON2:
+    ASCLINFDIV:
+      Stopped: [0, "fASCLINF is stopped"]
+      Div1: [1, "fASCLINF = fsource2"]
+      Div2: [2, "fASCLINF = fsource2/2"]
+      Div3: [3, "fASCLINF = fsource2/3"]
+      Div4: [4, "fASCLINF = fsource2/4"]
+      Div5: [5, "fASCLINF = fsource2/5"]
+      Div6: [6, "fASCLINF = fsource2/6"]
+      Div8: [8, "fASCLINF = fsource2/8"]
+      Div10: [10, "fASCLINF = fsource2/10"]
+      Div12: [12, "fASCLINF = fsource2/12"]
+      Div15: [15, "fASCLINF = fsource2/15"]
+    ASCLINSDIV:
+      Stopped: [0, "fASCLINSI is stopped"]
+      Div1: [1, "fASCLINSI = fsource1"]
+      Div2: [2, "fASCLINSI = fsource1/2"]
+      Div3: [3, "fASCLINSI = fsource1/3"]
+      Div4: [4, "fASCLINSI = fsource1/4"]
+      Div5: [5, "fASCLINSI = fsource1/5"]
+      Div6: [6, "fASCLINSI = fsource1/6"]
+      Div8: [8, "fASCLINSI = fsource1/8"]
+      Div10: [10, "fASCLINSI = fsource1/10"]
+      Div12: [12, "fASCLINSI = fsource1/12"]
+      Div15: [15, "fASCLINSI = fsource1/15"]
+    _modify:
+      CLKSELASCLINS:
+        description: "This bit field defines the clock source that is used for the clock generation of fASCLINS.\n\nNote: The clock has to be turned off before enabling a different clock source."
+    CLKSELASCLINS:
+      Stopped: [0, "fASCLINS clock is stopped"]
+      UseASCLINSI: [1, "fASCLINSI is used as clock source for fASCLINS"]
+      UseOscillator: [2, "fOSC0 is used as clock source for fASCLINS"]
+  CCUCON5:
+    GETHDIV:
+      Stopped: [0, "fGETH clock is stopped"]
+      Div1: [1, "fGETH = fsource0"]
+      Div2: [2, "fGETH = fsource0/2"]
+      Div3: [3, "fGETH = fsource0/3"]
+      Div4: [4, "fGETH = fsource0/4"]
+    MCANHDIV:
+      Stopped: [0, "fMCANH is stopped"]
+      Div1: [1, "fMCANH = fsource0"]
+      Div2: [2, "fMCANH = fsource0/2"]
+      Div3: [3, "fMCANH = fsource0/3"]
+      Div4: [4, "fMCANH = fsource0/4"]
+      Div5: [5, "fMCANH = fsource0/5"]
+      Div6: [6, "fMCANH = fsource0/6"]
+      Div8: [8, "fMCANH = fsource0/8"]
+      Div10: [10, "fMCANH = fsource0/10"]
+      Div12: [12, "fMCANH = fsource0/12"]
+      Div15: [15, "fMCANH = fsource0/15"]
+  
+
+  OSCCON:
+    MODE:
+      "ExternalCrystal": [0, "External Crystal / Ceramic Resonator Mode. The oscillator Power-Saving Mode is not entered."]
+      "DisableNormal": [1, "OSC is disabled. The oscillator Power-Saving Mode is not entered."]
+      "ExternalInput": [2, "External Input Clock Mode and the oscillator Power-Saving Mode is entered"]
+      "DisablePowerSave": [3, "OSC is disabled. The oscillator Power-Saving Mode is entered."]
+  SYSPLLCON0:
+    INSEL:
+      Backup: [0, "back-up clock is used as clock source"]
+      Oscillator: [1, "fOSC0 is used as clock source"]
+      SysclkPin: [2, "SYSCLK pin is used as clock source"]
+    PLLPWD:
+      _write_constraint: "enum"
+      PowerSaving: [0, "The complete System PLL block is put into a Power Saving Mode and can no longer be used."]
+      Normal: [1, "Normal behavior"]
+"CAN0":
+  MCR:
+    _array:
+      "CLKSEL*":
+        description: "Node clock select"
+    CLKSEL?:
+      ClockOff: [0, "No clock supplied"]
+      OnlyAsync: [1, "Only the asynchronous clock source is switched on"]
+      OnlySync: [2, "Only the synchronous clock source is switched on"]
+      BothOn: [3, "Both clocks are turned on"]
+  _cluster:
+    "NODE%s":
+      description: "CAN0 node cluster"
+      "ACCENNODE?0":
+        name: ACCENNODE0
+      "TDCR?":
+        name: TDCR
+      "IR?":
+        name: IR
+      "IE?":
+        name: IE
+      "GFC?":
+        name: GFC
+        "ANFE":
+          "AcceptFifo0": [0, "Accept non-matching extended frames in Rx FIFO 0"]
+          "AcceptFifo1": [1, "Accept non-matching extended frames in Rx FIFO 1"]
+          "Reject": [2, "Reject non-matching extended"]
+        "ANFS":
+          "AcceptFifo0": [0, "Accept non-matching standard frames in Rx FIFO 0"]
+          "AcceptFifo1": [1, "Accept non-matching standard frames in Rx FIFO 1"]
+          "Reject": [2, "Reject non-matching standard frames"]
+      "SIDFC?":
+        name: SIDFC
+      "XIDFC?":
+        name: XIDFC
+      "XIDAM?":
+        name: XIDAM
+      "HPMS?":
+        name: HPMS
+      "NDAT1?":
+        name: NDAT1
+      "NDAT2?":
+        name: NDAT2
+      "RXF0C?":
+        name: RXF0C
+      "RXF0S?":
+        name: RXF0S
+      "RXF0A?":
+        name: RXF0A
+      "RXBC?":
+        name: RXBC
+      "RXF1C?":
+        name: RXF1C
+      "RXF1S?":
+        name: RXF1S
+      "RXF1A?":
+        name: RXF1A
+      "RXESC?":
+        name: RXESC
+        _modify:
+          "RBDS":
+            description: |
+              **Rx Buffer Data Field Size**
+              
+              This bitfield is CCE and INIT protected. Writes will only have effect, if both bits are set.
+          "F0DS":
+            description: |
+              **Rx FIFO 0 Data Field Size**
+              
+              This bitfield is CCE and INIT protected. Writes will only have effect, if both
+              bits are set.
+
+              **Note:** In case the data field size of an accepted CAN frame exceeds
+              the data field size configured for the matching Rx Buffer or Rx
+              FIFO, only the number of bytes as configured by RXESC are
+              stored to the Rx Buffer resp. Rx FIFO element. The rest of the
+              frame's data field is ignored.
+          "F1DS":
+            description: |
+              **Rx FIFO 1 Data Field Size**
+              
+              This bitfield is CCE and INIT protected. Writes will only have effect, if both
+              bits are set.
+
+              **Note:** In case the data field size of an accepted CAN frame exceeds
+              the data field size configured for the matching Rx Buffer or Rx
+              FIFO, only the number of bytes as configured by RXESC are
+              stored to the Rx Buffer resp. Rx FIFO element. The rest of the
+              frame's data field is ignored.
+        "RBDS":
+          "BufferSize8": [0, "8 Byte data field"]
+          "BufferSize12": [1, "12 Byte data field"]
+          "BufferSize16": [2, "16 Byte data field"]
+          "BufferSize20": [3, "20 Byte data field"]
+          "BufferSize24": [4, "24 Byte data field"]
+          "BufferSize32": [5, "32 Byte data field"]
+          "BufferSize48": [6, "48 Byte data field"]
+          "BufferSize64": [7, "64 Byte data field"]
+        "F0DS":
+          "BufferSize8": [0, "8 Byte data field"]
+          "BufferSize12": [1, "12 Byte data field"]
+          "BufferSize16": [2, "16 Byte data field"]
+          "BufferSize20": [3, "20 Byte data field"]
+          "BufferSize24": [4, "24 Byte data field"]
+          "BufferSize32": [5, "32 Byte data field"]
+          "BufferSize48": [6, "48 Byte data field"]
+          "BufferSize64": [7, "64 Byte data field"]
+        "F1DS":
+          "BufferSize8": [0, "8 Byte data field"]
+          "BufferSize12": [1, "12 Byte data field"]
+          "BufferSize16": [2, "16 Byte data field"]
+          "BufferSize20": [3, "20 Byte data field"]
+          "BufferSize24": [4, "24 Byte data field"]
+          "BufferSize32": [5, "32 Byte data field"]
+          "BufferSize48": [6, "48 Byte data field"]
+          "BufferSize64": [7, "64 Byte data field"]
+      "TXBC?":
+        name: TXBC
+      "TXFQS?":
+        name: TXFQS
+      "NTCCR?":
+        name: NTCCR
+      "NTATTR?":
+        name: NTATTR
+      "NTBTTR?":
+        name: NTBTTR
+      "NTCTTR?":
+        name: NTCTTR
+      "NTRTR?":
+        name: NTRTR
+      "NPCR?":
+        name: NPCR
+      "CREL?":
+        name: CREL
+      "ENDN?":
+        name: ENDN
+      "DBTP?":
+        name: DBTP
+      "TEST?":
+        name: TEST
+      "RWD?":
+        name: RWD
+      "CCCR?":
+        name: CCCR
+      "NBTP?":
+        name: NBTP
+      "TSCC?":
+        name: TSCC
+      "TSCV?":
+        name: TSCV
+      "TOCC?":
+        name: TOCC
+      "TOCV?":
+        name: TOCV
+      "ECR?":
+        name: ECR
+      "PSR?":
+        name: PSR
+        "ACT":
+          "Synchronizing": [0, "node is synchronizing on CAN communication"]
+          "Idle": [1,"node is neither receiver nor transmitter"]
+          "Receiver": [2,"node is operating as receiver"]
+          "Transmitter": [3,"node is operating as transmitter"]
+        "LEC":
+          "NoError": [0, "No error occurred since LEC has been reset by successful reception or transmission."]
+          "StuffError": [1, "More than 5 equal bits in a sequence have occurred in a part of a received message where this is not allowed."]
+          "FormError": [2, "A fixed format part of a received frame has the wrong format."]
+          "AckError": [3, "The message transmitted by the M_CAN was not acknowledged by another node."]
+          "Bit1Error": [4, "During the transmission of a message (with the exception of the arbitration field), the device wanted to send a recessive level (bit of logical value `1`), but the monitored bus value was dominant."]
+          "Bit0Error": [5, "During the transmission of a message (or acknowledge bit, or active error flag, or overload flag), the device wanted to send a dominant level (data or identifier bit logical value `0`), but the monitored bus value was recessive. During Bus_Off recovery this status is set each time a sequence of 11 recessive bits has been monitored. This enables the CPU to monitor the proceeding of the Bus_Off recovery sequence (indicating the bus is not stuck at dominant or continuously disturbed)."]
+          "CRCError": [6, "The CRC check sum of a received message was incorrect. The CRC of an incoming message does not match with the CRC calculated from the received data."]
+          "NoChange": [7, "Any read access to the Protocol Status Register re-initializes the LEC to `7`. When the LEC shows the value `7`, no CAN bus event was detected since the last CPU read access to the Protocol Status Register."]
+      "STARTADR?":
+        name: STARTADR
+      "ENDADR?":
+        name: ENDADR
+      "ISREG?":
+        name: ISREG
+      "GRINT1?":
+        name: GRINT1
+      "GRINT2?":
+        name: GRINT2
+      "TXESC?":
+        name: TXESC
+        _modify:
+          "TBDS":
+            description: |
+              **Tx Buffer Data Field Size**
+              
+              This bitfield is CCE and INIT protected. Writes will only have effect, if both bits are set.
+              
+              **Note:** In case the data length code DLC of a Tx Buffer element 
+              is configured to a value higher than the Tx Buffer data field size 
+              TXESC.TBDS, the bytes not defined by the Tx Buffer are transmitted 
+              as “0xCC” (padding bytes).
+        "TBDS":
+          "BufferSize8": [0, "8 Byte data field"]
+          "BufferSize12": [1, "12 Byte data field"]
+          "BufferSize16": [2, "16 Byte data field"]
+          "BufferSize20": [3, "20 Byte data field"]
+          "BufferSize24": [4, "24 Byte data field"]
+          "BufferSize32": [5, "32 Byte data field"]
+          "BufferSize48": [6, "48 Byte data field"]
+          "BufferSize64": [7, "64 Byte data field"]
+      "TXBRP?":
+        name: TXBRP
+        _array:
+          "TRP*": {}
+      "TXBAR?":
+        name: TXBAR
+        _array:
+          "AR*": {}
+      "TXBCR?":
+        name: TXBCR
+      "TXBTO?":
+        name: TXBTO
+      "TXBCF?":
+        name: TXBCF
+      "TXBTIE?":
+        name: TXBTIE
+      "TXBCIE?":
+        name: TXBCIE
+      "TXEFC?":
+        name: TXEFC
+      "TXEFS?":
+        name: TXEFS
+      "TXEFA?":
+        name: TXEFA
