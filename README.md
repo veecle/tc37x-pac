@@ -1,7 +1,7 @@
 ## Demo PAC for AURIX™ tc37x lite-kit
 
 Demo implementation of a Peripheral Access Crate for the [TC375-Lite kit]. 
-The **.svd** has been kindly provided by Infineon and is licensed 
+The **.svd** has been kindly provided by Infineon and is licensed under their condition (see [license](LICENSE))
 
 For full documentation refer to the [veecle-aurix-demo] crate.
 
